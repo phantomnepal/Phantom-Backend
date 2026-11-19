@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core.api.admin_auth_api import AdminLoginAPIView
+from core.api.product_api import ProductAPIView
+from core.api.refresh_token_check_api import AdminAuthCheckView
+from core.api.auth_refresh_access_token_api import AdminRefreshAccessTokenView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/admin/login/', AdminLoginAPIView.as_view(), name='admin-login'),
+    path("api/admin/auth/check/",AdminAuthCheckView.as_view()),
+     path("api/admin/refresh/access-token/", AdminRefreshAccessTokenView.as_view(),name="refresh-access-token"),
+
+     #product api
+      path("api/products/",ProductAPIView.as_view(),name="all-product-data"),
+
 ]
